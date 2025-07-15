@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Filter, Plus, TrendingUp, Star, ArrowRight } from "lucide-react";
+import { Filter, Plus, TrendingUp, Star, ArrowRight, Plane } from "lucide-react";
 import { Navbar } from "@/components/Navbar";
 import { CategoryCard } from "@/components/CategoryCard";
 import { ProductCard } from "@/components/ProductCard";
@@ -8,7 +8,8 @@ import { RequestForm } from "@/components/RequestForm";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { categories, featuredProducts, trendingProducts } from "@/data/marketplace";
+import { categories, featuredProducts, trendingProducts, tourismPackages } from "@/data/marketplace";
+import { TourismPackageCard } from "@/components/TourismPackageCard";
 
 const Index = () => {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
@@ -167,6 +168,38 @@ const Index = () => {
                 <ProductCard {...product} />
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Dental Tourism Section */}
+      <section className="py-16 bg-gradient-subtle">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <div className="flex items-center justify-center space-x-3 mb-4">
+              <Plane className="h-8 w-8 text-primary" />
+              <h2 className="text-3xl lg:text-4xl font-bold text-foreground">
+                Dental Tourism Packages
+              </h2>
+            </div>
+            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+              Combine world-class dental care with amazing travel experiences. Save up to 70% while enjoying luxury accommodations and professional treatments.
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+            {tourismPackages.map((pkg, index) => (
+              <div key={pkg.id} style={{ animationDelay: `${index * 0.1}s` }} className="animate-fade-in">
+                <TourismPackageCard {...pkg} />
+              </div>
+            ))}
+          </div>
+
+          <div className="text-center mt-12">
+            <Button variant="outline" size="lg" className="text-lg px-8 py-3">
+              View All Tourism Packages
+              <ArrowRight className="h-5 w-5 ml-2" />
+            </Button>
           </div>
         </div>
       </section>

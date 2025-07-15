@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Heart, ShoppingCart, ThumbsUp, Eye } from "lucide-react";
+import { Heart, ShoppingCart, ThumbsUp, Eye, Star } from "lucide-react";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -10,12 +10,14 @@ interface ProductCardProps {
   description: string;
   price: string;
   originalPrice?: string;
-  image: string;
+  imageUrl: string;
   category: string;
   votes: number;
-  isB2B?: boolean;
+  rating: number;
+  reviewCount: number;
   supplier?: string;
-  minOrder?: string;
+  featured?: boolean;
+  trending?: boolean;
 }
 
 export function ProductCard({
@@ -24,12 +26,14 @@ export function ProductCard({
   description,
   price,
   originalPrice,
-  image,
+  imageUrl,
   category,
   votes,
-  isB2B = false,
+  rating,
+  reviewCount,
   supplier,
-  minOrder
+  featured,
+  trending
 }: ProductCardProps) {
   const [voteCount, setVoteCount] = useState(votes);
   const [hasVoted, setHasVoted] = useState(false);
@@ -57,7 +61,7 @@ export function ProductCard({
     <Card className="group cursor-pointer transition-all duration-300 hover:shadow-medium hover:-translate-y-1 overflow-hidden">
       <div className="relative">
         <img
-          src={image}
+          src={imageUrl}
           alt={title}
           className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105"
         />
@@ -96,7 +100,7 @@ export function ProductCard({
           {description}
         </p>
         
-        {isB2B && supplier && (
+        {supplier && (
           <p className="text-xs text-primary mb-2">
             By {supplier}
           </p>
@@ -111,11 +115,11 @@ export function ProductCard({
               </span>
             )}
           </div>
-          {isB2B && minOrder && (
-            <span className="text-xs text-muted-foreground">
-              MOQ: {minOrder}
-            </span>
-          )}
+          <div className="flex items-center space-x-1 text-sm">
+            <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
+            <span>{rating}</span>
+            <span className="text-muted-foreground">({reviewCount})</span>
+          </div>
         </div>
       </CardContent>
 
@@ -126,7 +130,7 @@ export function ProductCard({
         </Button>
         <Button variant="default" size="sm" className="flex-1" onClick={handleAddToCart}>
           <ShoppingCart className="h-4 w-4 mr-2" />
-          {isB2B ? 'Request Quote' : 'Add to Cart'}
+          Add to Cart
         </Button>
       </CardFooter>
     </Card>
