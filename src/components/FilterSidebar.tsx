@@ -19,7 +19,9 @@ export function FilterSidebar({ isOpen, onClose }: FilterSidebarProps) {
     category: true,
     price: true,
     brand: true,
-    features: false
+    features: false,
+    location: false,
+    certification: false
   });
 
   const categories = [
@@ -28,7 +30,8 @@ export function FilterSidebar({ isOpen, onClose }: FilterSidebarProps) {
     "Oral Care Products", 
     "Laboratory Services",
     "Digital Solutions",
-    "Instruments"
+    "Instruments",
+    "Dental Tourism"
   ];
 
   const brands = [
@@ -47,6 +50,26 @@ export function FilterSidebar({ isOpen, onClose }: FilterSidebarProps) {
     "Biocompatible",
     "Sterilizable",
     "Eco-Friendly"
+  ];
+
+  const locations = [
+    "United States",
+    "Mexico",
+    "Costa Rica",
+    "Turkey",
+    "Thailand",
+    "Hungary",
+    "Poland",
+    "India"
+  ];
+
+  const certifications = [
+    "ISO 13485",
+    "FDA Approved",
+    "CE Marking",
+    "Health Canada",
+    "TUV Certified",
+    "JIS Standard"
   ];
 
   const toggleSection = (section: string) => {
@@ -221,7 +244,7 @@ export function FilterSidebar({ isOpen, onClose }: FilterSidebarProps) {
           </Card>
 
           {/* Features */}
-          <Card>
+          <Card className="mb-4">
             <CardHeader 
               className="pb-3 cursor-pointer"
               onClick={() => toggleSection('features')}
@@ -244,6 +267,68 @@ export function FilterSidebar({ isOpen, onClose }: FilterSidebarProps) {
                       className="text-sm cursor-pointer flex-1"
                     >
                       {feature}
+                    </label>
+                  </div>
+                ))}
+              </CardContent>
+            )}
+          </Card>
+
+          {/* Location (for Tourism) */}
+          <Card className="mb-4">
+            <CardHeader 
+              className="pb-3 cursor-pointer"
+              onClick={() => toggleSection('location')}
+            >
+              <CardTitle className="text-sm flex items-center justify-between">
+                Treatment Locations
+                {expandedSections.location ? 
+                  <ChevronUp className="h-4 w-4" /> : 
+                  <ChevronDown className="h-4 w-4" />
+                }
+              </CardTitle>
+            </CardHeader>
+            {expandedSections.location && (
+              <CardContent className="pt-0 space-y-3">
+                {locations.map((location) => (
+                  <div key={location} className="flex items-center space-x-2">
+                    <Checkbox id={location} />
+                    <label 
+                      htmlFor={location}
+                      className="text-sm cursor-pointer flex-1"
+                    >
+                      {location}
+                    </label>
+                  </div>
+                ))}
+              </CardContent>
+            )}
+          </Card>
+
+          {/* Certifications */}
+          <Card>
+            <CardHeader 
+              className="pb-3 cursor-pointer"
+              onClick={() => toggleSection('certification')}
+            >
+              <CardTitle className="text-sm flex items-center justify-between">
+                Certifications
+                {expandedSections.certification ? 
+                  <ChevronUp className="h-4 w-4" /> : 
+                  <ChevronDown className="h-4 w-4" />
+                }
+              </CardTitle>
+            </CardHeader>
+            {expandedSections.certification && (
+              <CardContent className="pt-0 space-y-3">
+                {certifications.map((cert) => (
+                  <div key={cert} className="flex items-center space-x-2">
+                    <Checkbox id={cert} />
+                    <label 
+                      htmlFor={cert}
+                      className="text-sm cursor-pointer flex-1"
+                    >
+                      {cert}
                     </label>
                   </div>
                 ))}

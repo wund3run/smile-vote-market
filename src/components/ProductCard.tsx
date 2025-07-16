@@ -18,6 +18,7 @@ interface ProductCardProps {
   supplier?: string;
   featured?: boolean;
   trending?: boolean;
+  viewMode?: 'grid' | 'list';
 }
 
 export function ProductCard({
@@ -33,7 +34,8 @@ export function ProductCard({
   reviewCount,
   supplier,
   featured,
-  trending
+  trending,
+  viewMode = 'grid'
 }: ProductCardProps) {
   const [voteCount, setVoteCount] = useState(votes);
   const [hasVoted, setHasVoted] = useState(false);
@@ -58,12 +60,20 @@ export function ProductCard({
   };
 
   return (
-    <Card className="group cursor-pointer transition-all duration-300 hover:shadow-medium hover:-translate-y-1 overflow-hidden">
-      <div className="relative">
+    <Card className={`group cursor-pointer transition-all duration-300 hover:shadow-medium overflow-hidden ${
+      viewMode === 'grid' 
+        ? 'hover:-translate-y-1' 
+        : 'flex flex-row'
+    }`}>
+      <div className={`relative ${
+        viewMode === 'grid' ? '' : 'w-48 flex-shrink-0'
+      }`}>
         <img
           src={imageUrl}
           alt={title}
-          className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105"
+          className={`object-cover transition-transform duration-300 group-hover:scale-105 ${
+            viewMode === 'grid' ? 'w-full h-48' : 'w-full h-full'
+          }`}
         />
         <div className="absolute top-2 left-2">
           <Badge variant="secondary" className="text-xs">
@@ -92,7 +102,8 @@ export function ProductCard({
         </div>
       </div>
 
-      <CardContent className="p-4">
+      <div className={`${viewMode === 'grid' ? '' : 'flex-1 flex flex-col'}`}>
+      <CardContent className="p-4 flex-1">
         <h3 className="font-semibold text-lg mb-2 line-clamp-2 group-hover:text-primary transition-colors">
           {title}
         </h3>
@@ -123,7 +134,9 @@ export function ProductCard({
         </div>
       </CardContent>
 
-      <CardFooter className="p-4 pt-0 space-x-2">
+      <CardFooter className={`p-4 pt-0 space-x-2 ${
+        viewMode === 'list' ? 'mt-auto' : ''
+      }`}>
         <Button variant="outline" size="sm" className="flex-1">
           <Eye className="h-4 w-4 mr-2" />
           View Details
@@ -133,6 +146,7 @@ export function ProductCard({
           Add to Cart
         </Button>
       </CardFooter>
+      </div>
     </Card>
   );
 }

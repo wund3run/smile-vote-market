@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Filter, Plus, TrendingUp, Star, ArrowRight, Plane } from "lucide-react";
+import { Filter, Plus, TrendingUp, Star, ArrowRight, Plane, Grid3X3, List, SortAsc } from "lucide-react";
 import { Navbar } from "@/components/Navbar";
 import { CategoryCard } from "@/components/CategoryCard";
 import { ProductCard } from "@/components/ProductCard";
@@ -8,6 +8,12 @@ import { RequestForm } from "@/components/RequestForm";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { 
+  DropdownMenu, 
+  DropdownMenuContent, 
+  DropdownMenuItem, 
+  DropdownMenuTrigger 
+} from "@/components/ui/dropdown-menu";
 import { categories, featuredProducts, trendingProducts, tourismPackages } from "@/data/marketplace";
 import { TourismPackageCard } from "@/components/TourismPackageCard";
 
@@ -15,6 +21,8 @@ const Index = () => {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [isRequestFormOpen, setIsRequestFormOpen] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
+  const [sortBy, setSortBy] = useState<'popular' | 'recent' | 'price' | 'rating'>('popular');
 
   const handleCategoryClick = (categoryId: string) => {
     setSelectedCategory(categoryId);
@@ -23,7 +31,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-gradient-subtle">
-      <Navbar />
+      <Navbar onFilterToggle={() => setIsFilterOpen(!isFilterOpen)} />
       
       {/* Hero Section */}
       <section className="relative bg-gradient-primary text-primary-foreground py-20">
@@ -113,7 +121,7 @@ const Index = () => {
       {/* Featured Products */}
       <section className="py-16 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between mb-8">
+          <div className="flex flex-col lg:flex-row lg:items-center justify-between mb-8 gap-4">
             <div>
               <h2 className="text-3xl font-bold text-foreground mb-2">
                 Featured Products
@@ -122,19 +130,68 @@ const Index = () => {
                 Hand-picked products recommended by professionals
               </p>
             </div>
-            <Button 
-              variant="outline"
-              onClick={() => setIsFilterOpen(true)}
-            >
-              <Filter className="h-4 w-4 mr-2" />
-              Filter
-            </Button>
+            
+            <div className="flex items-center gap-2">
+              {/* View Mode Toggle */}
+              <div className="flex bg-muted rounded-lg p-1">
+                <Button
+                  variant={viewMode === 'grid' ? 'default' : 'ghost'}
+                  size="sm"
+                  onClick={() => setViewMode('grid')}
+                >
+                  <Grid3X3 className="h-4 w-4" />
+                </Button>
+                <Button
+                  variant={viewMode === 'list' ? 'default' : 'ghost'}
+                  size="sm"
+                  onClick={() => setViewMode('list')}
+                >
+                  <List className="h-4 w-4" />
+                </Button>
+              </div>
+
+              {/* Sort Dropdown */}
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="outline" className="gap-2">
+                    <SortAsc className="h-4 w-4" />
+                    Sort: {sortBy.charAt(0).toUpperCase() + sortBy.slice(1)}
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent>
+                  <DropdownMenuItem onClick={() => setSortBy('popular')}>
+                    Most Popular
+                  </DropdownMenuItem>
+                  <DropdownMenuItem onClick={() => setSortBy('recent')}>
+                    Most Recent
+                  </DropdownMenuItem>
+                  <DropdownMenuItem onClick={() => setSortBy('price')}>
+                    Price: Low to High
+                  </DropdownMenuItem>
+                  <DropdownMenuItem onClick={() => setSortBy('rating')}>
+                    Highest Rated
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+
+              <Button 
+                variant="outline"
+                onClick={() => setIsFilterOpen(true)}
+              >
+                <Filter className="h-4 w-4 mr-2" />
+                Filter
+              </Button>
+            </div>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className={`${
+            viewMode === 'grid' 
+              ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6' 
+              : 'space-y-4'
+          }`}>
             {featuredProducts.map((product, index) => (
               <div key={product.id} style={{ animationDelay: `${index * 0.15}s` }} className="animate-fade-in">
-                <ProductCard {...product} />
+                <ProductCard {...product} viewMode={viewMode} />
               </div>
             ))}
           </div>
