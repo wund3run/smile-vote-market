@@ -26,7 +26,7 @@ export function RequestForm({ isOpen, onClose }: RequestFormProps) {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // Handle form submission
-    console.log("Request submitted:", formData);
+    // TODO: Implement actual form submission logic
     onClose();
   };
 
@@ -76,10 +76,11 @@ export function RequestForm({ isOpen, onClose }: RequestFormProps) {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <label className="text-sm font-medium mb-2 block">
+                <label htmlFor="category" className="text-sm font-medium mb-2 block">
                   Category
                 </label>
                 <select
+                  id="category"
                   className="w-full px-3 py-2 border border-input rounded-md bg-background"
                   value={formData.category}
                   onChange={(e) => setFormData(prev => ({ ...prev, category: e.target.value }))}
@@ -119,10 +120,11 @@ export function RequestForm({ isOpen, onClose }: RequestFormProps) {
               </div>
 
               <div>
-                <label className="text-sm font-medium mb-2 block">
+                <label htmlFor="urgency" className="text-sm font-medium mb-2 block">
                   Urgency
                 </label>
                 <select
+                  id="urgency"
                   className="w-full px-3 py-2 border border-input rounded-md bg-background"
                   value={formData.urgency}
                   onChange={(e) => setFormData(prev => ({ ...prev, urgency: e.target.value }))}
