@@ -5,7 +5,7 @@ import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge";
 import { TourismPackage } from "@/data/marketplace";
 
-interface TourismPackageCardProps extends TourismPackage {}
+type TourismPackageCardProps = TourismPackage;
 
 export const TourismPackageCard = ({
   id,
