@@ -120,25 +120,26 @@ const Index = () => {
       </section>
 
       {/* Featured Products */}
-      <section className="py-16 bg-background">
+      <section className="py-20 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col lg:flex-row lg:items-center justify-between mb-8 gap-4">
+          <div className="flex flex-col lg:flex-row lg:items-center justify-between mb-12 gap-6">
             <div>
-              <h2 className="text-3xl font-bold text-foreground mb-2">
+              <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-3">
                 Featured Products
               </h2>
-              <p className="text-muted-foreground">
+              <p className="text-lg text-muted-foreground">
                 Hand-picked products recommended by professionals
               </p>
             </div>
             
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-3">
               {/* View Mode Toggle */}
-              <div className="flex bg-muted rounded-lg p-1">
+              <div className="flex bg-muted/70 rounded-xl p-1.5 border">
                 <Button
                   variant={viewMode === 'grid' ? 'default' : 'ghost'}
                   size="sm"
                   onClick={() => setViewMode('grid')}
+                  className="transition-all duration-200"
                 >
                   <Grid3X3 className="h-4 w-4" />
                 </Button>
@@ -146,6 +147,7 @@ const Index = () => {
                   variant={viewMode === 'list' ? 'default' : 'ghost'}
                   size="sm"
                   onClick={() => setViewMode('list')}
+                  className="transition-all duration-200"
                 >
                   <List className="h-4 w-4" />
                 </Button>
@@ -154,7 +156,7 @@ const Index = () => {
               {/* Sort Dropdown */}
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Button variant="outline" className="gap-2">
+                  <Button variant="outline" className="gap-2 hover:shadow-soft transition-all duration-200">
                     <SortAsc className="h-4 w-4" />
                     Sort: {sortBy.charAt(0).toUpperCase() + sortBy.slice(1)}
                   </Button>
@@ -178,6 +180,7 @@ const Index = () => {
               <Button 
                 variant="outline"
                 onClick={() => setIsFilterOpen(true)}
+                className="hover:shadow-soft transition-all duration-200"
               >
                 <Filter className="h-4 w-4 mr-2" />
                 Filter
@@ -187,11 +190,11 @@ const Index = () => {
           
           <div className={`${
             viewMode === 'grid' 
-              ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6' 
-              : 'space-y-4'
+              ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8' 
+              : 'space-y-6'
           }`}>
             {featuredProducts.map((product, index) => (
-              <div key={product.id} style={{ animationDelay: `${index * 0.15}s` }} className="animate-fade-in">
+              <div key={product.id} style={{ animationDelay: `${index * 0.1}s` }} className="animate-fade-in">
                 <ProductCard {...product} viewMode={viewMode} />
               </div>
             ))}
@@ -200,27 +203,27 @@ const Index = () => {
       </section>
 
       {/* Trending Section */}
-      <section className="py-16">
+      <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between mb-8">
-            <div className="flex items-center space-x-3">
-              <TrendingUp className="h-8 w-8 text-accent" />
+          <div className="flex items-center justify-between mb-12">
+            <div className="flex items-center space-x-4">
+              <TrendingUp className="h-10 w-10 text-accent" />
               <div>
-                <h2 className="text-3xl font-bold text-foreground">
+                <h2 className="text-3xl lg:text-4xl font-bold text-foreground">
                   Trending Now
                 </h2>
-                <p className="text-muted-foreground">
+                <p className="text-lg text-muted-foreground">
                   Most voted products by the community
                 </p>
               </div>
             </div>
-            <Badge variant="secondary" className="text-sm">
-              <Star className="h-3 w-3 mr-1" />
+            <Badge variant="secondary" className="text-sm px-4 py-2">
+              <Star className="h-4 w-4 mr-2" />
               Top Voted
             </Badge>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {trendingProducts.map((product, index) => (
               <div key={product.id} style={{ animationDelay: `${index * 0.1}s` }} className="animate-scale-in">
                 <ProductCard {...product} />
@@ -231,21 +234,21 @@ const Index = () => {
       </section>
 
       {/* Dental Tourism Section */}
-      <section className="py-16 bg-gradient-subtle">
+      <section className="py-24 bg-gradient-subtle">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <div className="flex items-center justify-center space-x-3 mb-4">
-              <Plane className="h-8 w-8 text-primary" />
-              <h2 className="text-3xl lg:text-4xl font-bold text-foreground">
+          <div className="text-center mb-16">
+            <div className="flex items-center justify-center space-x-4 mb-6">
+              <Plane className="h-10 w-10 text-primary" />
+              <h2 className="text-3xl lg:text-5xl font-bold text-foreground">
                 Dental Tourism Packages
               </h2>
             </div>
-            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+            <p className="text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed">
               Combine world-class dental care with amazing travel experiences. Save up to 70% while enjoying luxury accommodations and professional treatments.
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
             {tourismPackages.map((pkg, index) => (
               <div key={pkg.id} style={{ animationDelay: `${index * 0.1}s` }} className="animate-fade-in">
                 <TourismPackageCard {...pkg} />
@@ -253,8 +256,8 @@ const Index = () => {
             ))}
           </div>
 
-          <div className="text-center mt-12">
-            <Button variant="outline" size="lg" className="text-lg px-8 py-3">
+          <div className="text-center mt-16">
+            <Button variant="outline" size="lg" className="text-lg px-10 py-4 hover:shadow-medium transition-all duration-300 hover:scale-105">
               View All Tourism Packages
               <ArrowRight className="h-5 w-5 ml-2" />
             </Button>
@@ -263,24 +266,39 @@ const Index = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-accent text-accent-foreground">
-        <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl lg:text-4xl font-bold mb-6">
+      <section className="py-24 bg-gradient-accent text-accent-foreground relative overflow-hidden">
+        {/* Background Pattern */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent"></div>
+        </div>
+        
+        <div className="relative max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl lg:text-5xl font-bold mb-8">
             Can't Find What You Need?
           </h2>
-          <p className="text-lg mb-8 opacity-90">
+          <p className="text-xl mb-12 opacity-95 max-w-2xl mx-auto leading-relaxed">
             Submit a request and let our community of suppliers find the perfect solution for you.
             The more votes your request gets, the higher priority it receives!
           </p>
-          <Button 
-            variant="secondary" 
-            size="lg"
-            onClick={() => setIsRequestFormOpen(true)}
-            className="text-lg px-8 py-3"
-          >
-            <Plus className="h-5 w-5 mr-2" />
-            Submit Request
-          </Button>
+          <div className="flex flex-col sm:flex-row gap-6 justify-center">
+            <Button 
+              variant="secondary" 
+              size="lg"
+              onClick={() => setIsRequestFormOpen(true)}
+              className="text-lg px-10 py-4 bg-white text-accent hover:bg-white/90 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl"
+            >
+              <Plus className="h-5 w-5 mr-2" />
+              Submit Request
+            </Button>
+            <Button 
+              variant="outline" 
+              size="lg"
+              className="text-lg px-10 py-4 border-white/30 text-white hover:bg-white/10 transition-all duration-300 hover:scale-105"
+            >
+              Browse All Products
+              <ArrowRight className="h-5 w-5 ml-2" />
+            </Button>
+          </div>
         </div>
       </section>
 

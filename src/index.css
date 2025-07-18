@@ -52,6 +52,10 @@ All colors MUST be HSL.
     
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    
+    /* Focus states for accessibility */
+    --focus-ring: 2px solid hsl(var(--primary));
+    --focus-ring-offset: 2px;
 
     --radius: 0.5rem;
 
@@ -118,5 +122,24 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+  }
+  
+  /* Enhanced focus states for accessibility */
+  button:focus-visible,
+  input:focus-visible,
+  select:focus-visible,
+  textarea:focus-visible,
+  [role="button"]:focus-visible {
+    outline: var(--focus-ring);
+    outline-offset: var(--focus-ring-offset);
+  }
+  
+  /* Smooth transitions for interactive elements */
+  button,
+  input,
+  select,
+  textarea,
+  [role="button"] {
+    transition: var(--transition-smooth);
   }
 }
