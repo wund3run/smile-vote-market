@@ -3,6 +3,7 @@ import { Heart, ShoppingCart, ThumbsUp, Eye, Star } from "lucide-react";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { ContentVerificationLabel, ContentDisclaimer } from "@/components/ContentVerificationLabel";
 
 interface ProductCardProps {
   id: string;
@@ -19,6 +20,12 @@ interface ProductCardProps {
   featured?: boolean;
   trending?: boolean;
   viewMode?: 'grid' | 'list';
+  verified?: {
+    rating: boolean;
+    price: boolean;
+    supplier: boolean;
+    claims: boolean;
+  };
 }
 
 export function ProductCard({
@@ -35,7 +42,13 @@ export function ProductCard({
   supplier,
   featured,
   trending,
-  viewMode = 'grid'
+  viewMode = 'grid',
+  verified = {
+    rating: false,
+    price: false,
+    supplier: false,
+    claims: false
+  }
 }: ProductCardProps) {
   const [voteCount, setVoteCount] = useState(votes);
   const [hasVoted, setHasVoted] = useState(false);
@@ -107,19 +120,38 @@ export function ProductCard({
         <h3 className="font-semibold text-lg mb-2 line-clamp-2 group-hover:text-primary transition-colors">
           {title}
         </h3>
-        <p className="text-sm text-muted-foreground mb-3 line-clamp-2">
-          {description}
-        </p>
+        <ContentDisclaimer status="unverified" className="mb-3">
+          <p className="text-sm text-muted-foreground line-clamp-2">
+            {description}
+          </p>
+        </ContentDisclaimer>
         
         {supplier && (
-          <p className="text-xs text-primary mb-2">
-            By {supplier}
-          </p>
+          <div className="mb-2">
+            {!verified.supplier ? (
+              <ContentDisclaimer status="unverified">
+                <p className="text-xs text-primary">
+                  By {supplier}
+                </p>
+              </ContentDisclaimer>
+            ) : (
+              <p className="text-xs text-primary">
+                By {supplier}
+              </p>
+            )}
+          </div>
         )}
 
         <div className="flex items-center justify-between mb-3">
           <div className="flex items-center space-x-2">
-            <span className="text-lg font-bold text-primary">{price}</span>
+            {!verified.price ? (
+              <div className="flex items-center gap-2">
+                <span className="text-lg font-bold text-primary">{price}</span>
+                <ContentVerificationLabel status="unverified" showTooltip={false} />
+              </div>
+            ) : (
+              <span className="text-lg font-bold text-primary">{price}</span>
+            )}
             {originalPrice && (
               <span className="text-sm text-muted-foreground line-through">
                 {originalPrice}
@@ -130,6 +162,9 @@ export function ProductCard({
             <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
             <span>{rating}</span>
             <span className="text-muted-foreground">({reviewCount})</span>
+            {!verified.rating && (
+              <ContentVerificationLabel status="unverified" showTooltip={false} className="ml-1" />
+            )}
           </div>
         </div>
       </CardContent>
