@@ -5,14 +5,15 @@ import {
   Smile, 
   Monitor, 
   Scissors,
-  Plane
+  Plane,
+  type LucideIcon
 } from "lucide-react";
 
 export interface Category {
   id: string;
   title: string;
   description: string;
-  icon: any;
+  icon: LucideIcon;
   productCount: number;
   imageUrl?: string;
 }
