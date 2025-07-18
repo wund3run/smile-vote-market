@@ -5,6 +5,7 @@ import { CategoryCard } from "@/components/CategoryCard";
 import { ProductCard } from "@/components/ProductCard";
 import { FilterSidebar } from "@/components/FilterSidebar";
 import { RequestForm } from "@/components/RequestForm";
+import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -34,29 +35,29 @@ const Index = () => {
       <Navbar onFilterToggle={() => setIsFilterOpen(!isFilterOpen)} />
       
       {/* Hero Section */}
-      <section className="relative bg-gradient-primary text-primary-foreground py-20">
+      <section className="relative bg-gradient-hero text-primary-foreground py-24 lg:py-32">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h1 className="text-4xl lg:text-6xl font-bold mb-6 animate-fade-in">
+            <h1 className="text-4xl lg:text-6xl font-bold mb-8 animate-fade-in">
               The Complete Dental Marketplace
             </h1>
-            <p className="text-xl lg:text-2xl mb-8 opacity-90 max-w-3xl mx-auto animate-slide-up">
+            <p className="text-xl lg:text-2xl mb-12 opacity-95 max-w-3xl mx-auto leading-relaxed animate-slide-up">
               Connect with suppliers, discover innovative products, and find exactly what your practice needs
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center animate-scale-in">
+            <div className="flex flex-col sm:flex-row gap-6 justify-center animate-scale-in">
               <Button 
                 variant="accent" 
                 size="lg"
                 onClick={() => setIsRequestFormOpen(true)}
-                className="text-lg px-8 py-3"
+                className="text-lg px-10 py-4 shadow-medium hover:shadow-strong transition-all duration-300 hover:scale-105"
               >
                 <Plus className="h-5 w-5 mr-2" />
                 Request Product
               </Button>
               <Button 
-                variant="outline" 
+                variant="secondary" 
                 size="lg"
-                className="text-lg px-8 py-3 border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary"
+                className="text-lg px-10 py-4 bg-white/10 backdrop-blur-sm border-white/20 text-white hover:bg-white/20 transition-all duration-300 hover:scale-105"
               >
                 Browse Categories
                 <ArrowRight className="h-5 w-5 ml-2" />
@@ -67,42 +68,42 @@ const Index = () => {
       </section>
 
       {/* Stats Section */}
-      <section className="py-12 bg-background">
+      <section className="py-16 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="text-center">
-              <div className="text-3xl lg:text-4xl font-bold text-primary mb-2">1,234</div>
-              <div className="text-muted-foreground">Products</div>
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="text-center group">
+              <div className="text-4xl lg:text-5xl font-bold text-primary mb-3 group-hover:scale-105 transition-transform duration-200">1,234</div>
+              <div className="text-muted-foreground font-medium">Products</div>
             </div>
-            <div className="text-center">
-              <div className="text-3xl lg:text-4xl font-bold text-primary mb-2">456</div>
-              <div className="text-muted-foreground">Suppliers</div>
+            <div className="text-center group">
+              <div className="text-4xl lg:text-5xl font-bold text-primary mb-3 group-hover:scale-105 transition-transform duration-200">456</div>
+              <div className="text-muted-foreground font-medium">Suppliers</div>
             </div>
-            <div className="text-center">
-              <div className="text-3xl lg:text-4xl font-bold text-primary mb-2">2,890</div>
-              <div className="text-muted-foreground">Active Users</div>
+            <div className="text-center group">
+              <div className="text-4xl lg:text-5xl font-bold text-primary mb-3 group-hover:scale-105 transition-transform duration-200">2,890</div>
+              <div className="text-muted-foreground font-medium">Active Users</div>
             </div>
-            <div className="text-center">
-              <div className="text-3xl lg:text-4xl font-bold text-primary mb-2">5,670</div>
-              <div className="text-muted-foreground">Requests Fulfilled</div>
+            <div className="text-center group">
+              <div className="text-4xl lg:text-5xl font-bold text-primary mb-3 group-hover:scale-105 transition-transform duration-200">5,670</div>
+              <div className="text-muted-foreground font-medium">Requests Fulfilled</div>
             </div>
           </div>
         </div>
       </section>
 
       {/* Categories Section */}
-      <section className="py-16">
+      <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-4">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl lg:text-5xl font-bold text-foreground mb-6">
               Browse by Category
             </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
               Find exactly what you need across our comprehensive range of dental products and services
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {categories.map((category, index) => (
               <div key={category.id} style={{ animationDelay: `${index * 0.1}s` }} className="animate-slide-up">
                 <CategoryCard
@@ -294,6 +295,9 @@ const Index = () => {
         isOpen={isRequestFormOpen}
         onClose={() => setIsRequestFormOpen(false)}
       />
+
+      {/* Footer */}
+      <Footer />
     </div>
   );
 };

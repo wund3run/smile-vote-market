@@ -21,9 +21,9 @@ export function Navbar({ onFilterToggle }: NavbarProps) {
   const [language, setLanguage] = useState("EN");
 
   return (
-    <nav className="bg-card border-b shadow-soft sticky top-0 z-50">
+    <nav className="bg-card border-b shadow-soft sticky top-0 z-50 backdrop-blur-sm bg-card/95">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+        <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <div className="flex items-center">
             <div className="flex-shrink-0">
@@ -36,18 +36,18 @@ export function Navbar({ onFilterToggle }: NavbarProps) {
           {/* Enhanced Search Bar */}
           <div className="hidden md:flex flex-1 max-w-2xl mx-8">
             <div className="relative w-full">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
+              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-muted-foreground h-5 w-5" />
               <Input
                 type="text"
                 placeholder="Search products, equipment, services, tourism packages..."
-                className="pl-10 pr-12 w-full bg-muted/50 focus:bg-background transition-colors"
+                className="pl-12 pr-14 py-3 w-full bg-muted/50 focus:bg-background transition-colors border-0 focus:ring-2 focus:ring-primary/20"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
               <Button
                 variant="ghost"
                 size="icon"
-                className="absolute right-1 top-1/2 transform -translate-y-1/2 h-7 w-7"
+                className="absolute right-2 top-1/2 transform -translate-y-1/2 h-8 w-8 hover:bg-primary/10"
                 onClick={onFilterToggle}
               >
                 <Filter className="h-4 w-4" />
@@ -56,14 +56,14 @@ export function Navbar({ onFilterToggle }: NavbarProps) {
           </div>
 
           {/* Enhanced User Type Toggle & Actions */}
-          <div className="hidden md:flex items-center space-x-3">
+          <div className="hidden md:flex items-center space-x-4">
             {/* Enhanced User Type Toggle */}
-            <div className="flex bg-muted rounded-lg p-1">
+            <div className="flex bg-muted/70 rounded-xl p-1.5 border">
               <Button
                 variant={userType === 'B2C' ? 'default' : 'ghost'}
                 size="sm"
                 onClick={() => setUserType('B2C')}
-                className="text-xs font-medium"
+                className="text-sm font-medium px-4 py-2 rounded-lg transition-all duration-200"
               >
                 Individual
               </Button>
@@ -71,7 +71,7 @@ export function Navbar({ onFilterToggle }: NavbarProps) {
                 variant={userType === 'B2B' ? 'default' : 'ghost'}
                 size="sm"
                 onClick={() => setUserType('B2B')}
-                className="text-xs font-medium"
+                className="text-sm font-medium px-4 py-2 rounded-lg transition-all duration-200"
               >
                 Business
               </Button>
@@ -79,7 +79,7 @@ export function Navbar({ onFilterToggle }: NavbarProps) {
                 variant={userType === 'B2B2' ? 'default' : 'ghost'}
                 size="sm"
                 onClick={() => setUserType('B2B2')}
-                className="text-xs font-medium"
+                className="text-sm font-medium px-4 py-2 rounded-lg transition-all duration-200"
               >
                 Professional
               </Button>
@@ -88,7 +88,7 @@ export function Navbar({ onFilterToggle }: NavbarProps) {
             {/* Language Dropdown */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="ghost" size="sm" className="gap-1">
+                <Button variant="ghost" size="sm" className="gap-2 hover:bg-muted/50 transition-colors">
                   <Globe className="h-4 w-4" />
                   {language}
                 </Button>
@@ -110,25 +110,25 @@ export function Navbar({ onFilterToggle }: NavbarProps) {
             </DropdownMenu>
 
             {/* Action Buttons */}
-            <Button variant="ghost" size="icon" className="relative">
+            <Button variant="ghost" size="icon" className="relative hover:bg-muted/50 transition-colors">
               <Heart className="h-5 w-5" />
             </Button>
             
-            <Button variant="ghost" size="icon" className="relative">
+            <Button variant="ghost" size="icon" className="relative hover:bg-muted/50 transition-colors">
               <Bell className="h-5 w-5" />
-              <Badge className="absolute -top-1 -right-1 h-4 w-4 p-0 text-xs">
+              <Badge className="absolute -top-1 -right-1 h-5 w-5 p-0 text-xs bg-accent">
                 3
               </Badge>
             </Button>
 
-            <Button variant="ghost" size="icon" className="relative">
+            <Button variant="ghost" size="icon" className="relative hover:bg-muted/50 transition-colors">
               <ShoppingCart className="h-5 w-5" />
-              <Badge className="absolute -top-1 -right-1 h-4 w-4 p-0 text-xs">
+              <Badge className="absolute -top-1 -right-1 h-5 w-5 p-0 text-xs bg-accent">
                 2
               </Badge>
             </Button>
 
-            <Button variant="outline" className="font-medium">
+            <Button variant="default" className="font-medium px-6 shadow-soft hover:shadow-medium transition-all duration-200">
               <User className="h-4 w-4 mr-2" />
               Sign In
             </Button>
