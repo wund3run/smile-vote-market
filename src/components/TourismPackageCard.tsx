@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { TourismPackage } from "@/data/marketplace";
+import { ContentVerificationLabel, ContentDisclaimer } from "@/components/ContentVerificationLabel";
 
 type TourismPackageCardProps = TourismPackage;
 
@@ -24,7 +25,14 @@ export const TourismPackageCard = ({
   accommodation,
   featured,
   trending,
-  savings
+  savings,
+  verified = {
+    pricing: false,
+    savings: false,
+    features: false,
+    treatments: false,
+    rating: false
+  }
 }: TourismPackageCardProps) => {
   const [currentVotes, setCurrentVotes] = useState(votes);
   const [hasVoted, setHasVoted] = useState(false);
@@ -56,10 +64,13 @@ export const TourismPackageCard = ({
 
       {/* Savings Badge */}
       {savings && (
-        <div className="absolute top-3 right-3 z-10">
+        <div className="absolute top-3 right-3 z-10 flex items-center gap-1">
           <Badge variant="destructive" className="bg-gradient-to-r from-red-500 to-red-600 text-white">
             {savings}
           </Badge>
+          {!verified.savings && (
+            <ContentVerificationLabel status="unverified" showTooltip={false} />
+          )}
         </div>
       )}
 
@@ -94,9 +105,11 @@ export const TourismPackageCard = ({
         </h3>
 
         {/* Description */}
-        <p className="text-sm text-muted-foreground line-clamp-2">
-          {description}
-        </p>
+        <ContentDisclaimer status="unverified" className="mb-3">
+          <p className="text-sm text-muted-foreground line-clamp-2">
+            {description}
+          </p>
+        </ContentDisclaimer>
 
         {/* Rating & Reviews */}
         <div className="flex items-center space-x-2">
@@ -105,45 +118,86 @@ export const TourismPackageCard = ({
             <span className="text-sm font-medium">{rating}</span>
           </div>
           <span className="text-sm text-muted-foreground">({reviewCount} reviews)</span>
+          {!verified.rating && (
+            <ContentVerificationLabel status="unverified" showTooltip={false} />
+          )}
         </div>
 
         {/* Key Features */}
-        <div className="flex flex-wrap gap-1">
-          {features.slice(0, 2).map((feature, index) => (
-            <Badge key={index} variant="outline" className="text-xs">
-              {feature}
-            </Badge>
-          ))}
-          {features.length > 2 && (
-            <Badge variant="outline" className="text-xs">
-              +{features.length - 2} more
-            </Badge>
+        <div className="space-y-2">
+          {!verified.features ? (
+            <ContentDisclaimer status="unverified">
+              <div className="flex flex-wrap gap-1">
+                {features.slice(0, 2).map((feature, index) => (
+                  <Badge key={index} variant="outline" className="text-xs">
+                    {feature}
+                  </Badge>
+                ))}
+                {features.length > 2 && (
+                  <Badge variant="outline" className="text-xs">
+                    +{features.length - 2} more
+                  </Badge>
+                )}
+              </div>
+            </ContentDisclaimer>
+          ) : (
+            <div className="flex flex-wrap gap-1">
+              {features.slice(0, 2).map((feature, index) => (
+                <Badge key={index} variant="outline" className="text-xs">
+                  {feature}
+                </Badge>
+              ))}
+              {features.length > 2 && (
+                <Badge variant="outline" className="text-xs">
+                  +{features.length - 2} more
+                </Badge>
+              )}
+            </div>
           )}
         </div>
 
         {/* Accommodation */}
-        <div className="flex items-center space-x-1 text-sm">
-          <Shield className="h-4 w-4 text-primary" />
-          <span className="text-muted-foreground">{accommodation}</span>
-        </div>
+        <ContentDisclaimer status="unverified">
+          <div className="flex items-center space-x-1 text-sm">
+            <Shield className="h-4 w-4 text-primary" />
+            <span className="text-muted-foreground">{accommodation}</span>
+          </div>
+        </ContentDisclaimer>
 
         {/* Treatments Preview */}
         <div className="space-y-1">
           <p className="text-xs font-medium text-muted-foreground uppercase tracking-wide">
             Treatments Included:
           </p>
-          <div className="flex flex-wrap gap-1">
-            {treatments.slice(0, 3).map((treatment, index) => (
-              <span key={index} className="text-xs bg-primary/10 text-primary px-2 py-1 rounded">
-                {treatment}
-              </span>
-            ))}
-            {treatments.length > 3 && (
-              <span className="text-xs text-muted-foreground">
-                +{treatments.length - 3} more
-              </span>
-            )}
-          </div>
+          {!verified.treatments ? (
+            <ContentDisclaimer status="unverified">
+              <div className="flex flex-wrap gap-1">
+                {treatments.slice(0, 3).map((treatment, index) => (
+                  <span key={index} className="text-xs bg-primary/10 text-primary px-2 py-1 rounded">
+                    {treatment}
+                  </span>
+                ))}
+                {treatments.length > 3 && (
+                  <span className="text-xs text-muted-foreground">
+                    +{treatments.length - 3} more
+                  </span>
+                )}
+              </div>
+            </ContentDisclaimer>
+          ) : (
+            <div className="flex flex-wrap gap-1">
+              {treatments.slice(0, 3).map((treatment, index) => (
+                <span key={index} className="text-xs bg-primary/10 text-primary px-2 py-1 rounded">
+                  {treatment}
+                </span>
+              ))}
+              {treatments.length > 3 && (
+                <span className="text-xs text-muted-foreground">
+                  +{treatments.length - 3} more
+                </span>
+              )}
+            </div>
+          )}
         </div>
       </CardContent>
 
@@ -156,6 +210,9 @@ export const TourismPackageCard = ({
               <span className="text-sm text-muted-foreground line-through">
                 {originalPrice}
               </span>
+            )}
+            {!verified.pricing && (
+              <ContentVerificationLabel status="unverified" showTooltip={false} />
             )}
           </div>
           <p className="text-xs text-muted-foreground">Per person, all inclusive</p>

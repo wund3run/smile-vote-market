@@ -16,6 +16,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { categories, featuredProducts, trendingProducts, tourismPackages } from "@/data/marketplace";
 import { TourismPackageCard } from "@/components/TourismPackageCard";
+import { ContentVerificationLabel, ContentDisclaimer } from "@/components/ContentVerificationLabel";
 
 const Index = () => {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
@@ -70,22 +71,22 @@ const Index = () => {
       <section className="py-12 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="text-center">
+            <ContentDisclaimer status="unverified" className="text-center">
               <div className="text-3xl lg:text-4xl font-bold text-primary mb-2">1,234</div>
               <div className="text-muted-foreground">Products</div>
-            </div>
-            <div className="text-center">
+            </ContentDisclaimer>
+            <ContentDisclaimer status="unverified" className="text-center">
               <div className="text-3xl lg:text-4xl font-bold text-primary mb-2">456</div>
               <div className="text-muted-foreground">Suppliers</div>
-            </div>
-            <div className="text-center">
+            </ContentDisclaimer>
+            <ContentDisclaimer status="unverified" className="text-center">
               <div className="text-3xl lg:text-4xl font-bold text-primary mb-2">2,890</div>
               <div className="text-muted-foreground">Active Users</div>
-            </div>
-            <div className="text-center">
+            </ContentDisclaimer>
+            <ContentDisclaimer status="unverified" className="text-center">
               <div className="text-3xl lg:text-4xl font-bold text-primary mb-2">5,670</div>
               <div className="text-muted-foreground">Requests Fulfilled</div>
-            </div>
+            </ContentDisclaimer>
           </div>
         </div>
       </section>
@@ -240,7 +241,7 @@ const Index = () => {
               </h2>
             </div>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-              Combine world-class dental care with amazing travel experiences. Save up to 70% while enjoying luxury accommodations and professional treatments.
+              [Unverified] Combine world-class dental care with amazing travel experiences. Save up to 70% while enjoying luxury accommodations and professional treatments.
             </p>
           </div>
           
@@ -294,6 +295,34 @@ const Index = () => {
         isOpen={isRequestFormOpen}
         onClose={() => setIsRequestFormOpen(false)}
       />
+
+      {/* Content Verification Disclaimer */}
+      <footer className="bg-muted/50 border-t py-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center space-y-4">
+            <div className="flex items-center justify-center gap-2">
+              <ContentVerificationLabel status="unverified" showTooltip={false} />
+              <h3 className="text-lg font-semibold">Content Verification Notice</h3>
+            </div>
+            <div className="max-w-4xl mx-auto text-sm text-muted-foreground space-y-2">
+              <p>
+                <strong>Important:</strong> The information displayed on this marketplace, including but not limited to product ratings, 
+                supplier information, pricing, savings claims, and tourism package details, has not been independently verified 
+                and should not be considered as established fact.
+              </p>
+              <p>
+                Product descriptions, treatment claims, savings percentages, and user reviews may be unverified, inferred, 
+                or speculative. Please conduct your own research and verification before making any purchasing decisions 
+                or commitments to dental treatments or tourism packages.
+              </p>
+              <p>
+                [Unverified] Claims about product effectiveness, cost savings, treatment outcomes, or provider qualifications 
+                should be independently verified through appropriate professional channels before use.
+              </p>
+            </div>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 };

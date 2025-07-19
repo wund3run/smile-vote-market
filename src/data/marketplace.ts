@@ -31,6 +31,12 @@ export interface Product {
   reviewCount: number;
   featured?: boolean;
   trending?: boolean;
+  verified?: {
+    rating: boolean;
+    price: boolean;
+    supplier: boolean;
+    claims: boolean;
+  };
 }
 
 export interface TourismPackage {
@@ -51,6 +57,13 @@ export interface TourismPackage {
   featured?: boolean;
   trending?: boolean;
   savings?: string;
+  verified?: {
+    pricing: boolean;
+    savings: boolean;
+    features: boolean;
+    treatments: boolean;
+    rating: boolean;
+  };
 }
 
 export const categories: Category[] = [
@@ -123,7 +136,13 @@ export const featuredProducts: Product[] = [
     category: "equipment",
     rating: 4.9,
     reviewCount: 45,
-    featured: true
+    featured: true,
+    verified: {
+      rating: false,
+      price: false,
+      supplier: false,
+      claims: false
+    }
   },
   {
     id: "2",
@@ -136,7 +155,13 @@ export const featuredProducts: Product[] = [
     category: "instruments",
     rating: 4.8,
     reviewCount: 32,
-    featured: true
+    featured: true,
+    verified: {
+      rating: false,
+      price: false,
+      supplier: false,
+      claims: false
+    }
   },
   {
     id: "3",
@@ -149,7 +174,13 @@ export const featuredProducts: Product[] = [
     category: "digital",
     rating: 4.7,
     reviewCount: 78,
-    featured: true
+    featured: true,
+    verified: {
+      rating: false,
+      price: false,
+      supplier: false,
+      claims: false
+    }
   },
   {
     id: "4",
@@ -162,7 +193,13 @@ export const featuredProducts: Product[] = [
     category: "oral-care",
     rating: 4.6,
     reviewCount: 89,
-    featured: true
+    featured: true,
+    verified: {
+      rating: false,
+      price: false,
+      supplier: false,
+      claims: false
+    }
   }
 ];
 
@@ -178,7 +215,13 @@ export const trendingProducts: Product[] = [
     category: "laboratory",
     rating: 4.9,
     reviewCount: 67,
-    trending: true
+    trending: true,
+    verified: {
+      rating: false,
+      price: false,
+      supplier: false,
+      claims: false
+    }
   },
   {
     id: "6",
@@ -191,7 +234,13 @@ export const trendingProducts: Product[] = [
     category: "digital",
     rating: 4.8,
     reviewCount: 54,
-    trending: true
+    trending: true,
+    verified: {
+      rating: false,
+      price: false,
+      supplier: false,
+      claims: false
+    }
   },
   {
     id: "7",
@@ -204,7 +253,13 @@ export const trendingProducts: Product[] = [
     category: "instruments",
     rating: 4.7,
     reviewCount: 43,
-    trending: true
+    trending: true,
+    verified: {
+      rating: false,
+      price: false,
+      supplier: false,
+      claims: false
+    }
   }
 ];
 
@@ -225,7 +280,14 @@ export const tourismPackages: TourismPackage[] = [
     treatments: ["Porcelain Veneers", "Teeth Whitening", "Gum Contouring", "Dental Cleaning"],
     accommodation: "Luxury Beach Resort",
     featured: true,
-    savings: "Save $3,500"
+    savings: "Save $3,500",
+    verified: {
+      pricing: false,
+      savings: false,
+      features: false,
+      treatments: false,
+      rating: false
+    }
   },
   {
     id: "t2",
@@ -243,7 +305,14 @@ export const tourismPackages: TourismPackage[] = [
     treatments: ["Dental Implants", "Bone Grafting", "Crown Placement", "Consultation"],
     accommodation: "Eco-Luxury Hotel",
     trending: true,
-    savings: "Save $3,300"
+    savings: "Save $3,300",
+    verified: {
+      pricing: false,
+      savings: false,
+      features: false,
+      treatments: false,
+      rating: false
+    }
   },
   {
     id: "t3",
@@ -261,7 +330,14 @@ export const tourismPackages: TourismPackage[] = [
     treatments: ["Full Mouth Reconstruction", "Dental Implants", "Crowns & Bridges", "Gum Treatment"],
     accommodation: "5-Star All-Inclusive Resort",
     featured: true,
-    savings: "Save $8,200"
+    savings: "Save $8,200",
+    verified: {
+      pricing: false,
+      savings: false,
+      features: false,
+      treatments: false,
+      rating: false
+    }
   },
   {
     id: "t4",
@@ -278,7 +354,14 @@ export const tourismPackages: TourismPackage[] = [
     features: ["Historic city hotel", "Cultural tours", "Spa treatments", "Progress monitoring"],
     treatments: ["Invisalign", "Traditional Braces", "Retainers", "Regular Adjustments"],
     accommodation: "Boutique Historic Hotel",
-    savings: "Save $2,700"
+    savings: "Save $2,700",
+    verified: {
+      pricing: false,
+      savings: false,
+      features: false,
+      treatments: false,
+      rating: false
+    }
   },
   {
     id: "t5",
@@ -296,6 +379,13 @@ export const tourismPackages: TourismPackage[] = [
     treatments: ["Comprehensive Exam", "Professional Cleaning", "Fluoride Treatment", "X-rays"],
     accommodation: "4-Star City Hotel",
     trending: true,
-    savings: "Save $700"
+    savings: "Save $700",
+    verified: {
+      pricing: false,
+      savings: false,
+      features: false,
+      treatments: false,
+      rating: false
+    }
   }
 ];
