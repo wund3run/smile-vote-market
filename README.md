@@ -10,6 +10,7 @@ A comprehensive dental marketplace platform that connects dental professionals w
 - **Dental Tourism**: Explore dental tourism packages combining treatment with travel
 - **Advanced Filtering**: Filter and sort products by category, price, rating, and popularity
 - **Responsive Design**: Optimized for desktop and mobile devices
+- **Unused Code Detection**: Built-in tools to detect and clean up unused code for optimal bundle size
 
 ## Technology Stack
 
@@ -56,6 +57,9 @@ npm run dev
 - `npm run build:dev` - Build for development
 - `npm run lint` - Run ESLint
 - `npm run preview` - Preview production build
+- `npm run detect-unused` - Detect unused code in the project
+- `npm run detect-unused:report` - Generate detailed unused code report
+- `npm run detect-unused:clean` - Generate cleanup script for unused code
 
 ## Project Structure
 
@@ -72,8 +76,27 @@ src/
 ├── data/               # Static data and mock data
 ├── hooks/              # Custom React hooks
 ├── lib/                # Utility functions
+├── scripts/            # Build and development scripts
+│   └── detect-unused-code.js  # Unused code detection
+├── docs/               # Documentation
+│   └── UNUSED_CODE_DETECTION.md
 └── main.tsx           # Application entry point
 ```
+
+## Code Quality & Maintenance
+
+This project includes comprehensive tooling for maintaining code quality:
+
+### Unused Code Detection
+- Automated script to detect unused files and components
+- Enhanced ESLint rules for unused imports and variables
+- Strict TypeScript configuration to catch unused code
+- See [docs/UNUSED_CODE_DETECTION.md](docs/UNUSED_CODE_DETECTION.md) for details
+
+### Current Status
+- **31 unused files** detected (113.3 KB potential savings)
+- Mostly unused shadcn/ui components that can be safely removed
+- Regular scans recommended to prevent code accumulation
 
 ## Contributing
 

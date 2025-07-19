@@ -22,3 +22,8 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Unused code detection reports
+unused-code-report.json
+cleanup-unused-code.sh
+unused-code-backup-*/
