@@ -1,0 +1,17 @@
+<!-- Main Navigation Logo -->
+<a href="/" class="mimios-logo">
+  <img src="/mimios-logo.png" alt="Mimios Logo" class="mimios-logo-image">
+  <span class="mimios-logo-text">Mimios</span>
+</a>
+
+<!-- Small Logo (for compact areas) -->
+<a href="/" class="mimios-logo mimios-logo-small">
+  <img src="/mimios-logo.png" alt="Mimios" class="mimios-logo-image">
+  <span class="mimios-logo-text">Mimios</span>
+</a>
+
+<!-- Large Logo (for hero sections) -->
+<div class="mimios-logo mimios-logo-large">
+  <img src="/mimios-logo.png" alt="Mimios" class="mimios-logo-image">
+  <span class="mimios-logo-text">Mimios</span>
+</div>

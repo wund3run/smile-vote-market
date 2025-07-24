@@ -1,0 +1,17 @@
+name: Security Scan
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  security-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Run security scanner
+        run: |
+          # Replace the line below with your actual security scanning command
+          echo "Run your security scanning tool here"

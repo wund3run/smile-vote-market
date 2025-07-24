@@ -1,0 +1,215 @@
+import { Link } from "react-router-dom";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { SEO } from "@/components/SEO";
+import {
+  ArrowRight,
+  ShieldCheck,
+  Users,
+  Building2,
+  HeartPulse,
+  Coins,
+  Globe2,
+  Sparkles,
+  MessageSquare,
+} from "lucide-react";
+
+// Feature sections data
+const features = [
+  {
+    icon: <Coins className="h-8 w-8" />,
+    title: "Cost Optimization",
+    description: "Reduce overhead costs through bulk purchasing, group buying, and transparent pricing models.",
+  },
+  {
+    icon: <Building2 className="h-8 w-8" />,
+    title: "Practice Growth",
+    description: "Enhance your practice with customizable profiles, branding tools, and marketing analytics.",
+  },
+  {
+    icon: <ShieldCheck className="h-8 w-8" />,
+    title: "Insurance & Compliance",
+    description: "Streamline insurance verification, claims management, and regulatory compliance.",
+  },
+  {
+    icon: <MessageSquare className="h-8 w-8" />,
+    title: "Patient Communication",
+    description: "Improve patient engagement with automated reminders and secure messaging.",
+  },
+  {
+    icon: <Users className="h-8 w-8" />,
+    title: "Staff Management",
+    description: "Access dental job board, training tracking, and comprehensive staff management tools.",
+  },
+  {
+    icon: <Sparkles className="h-8 w-8" />,
+    title: "Technology Access",
+    description: "Explore curated dental equipment, software solutions, and financing options.",
+  },
+  {
+    icon: <HeartPulse className="h-8 w-8" />,
+    title: "Preventive Care",
+    description: "Access resources for preventive products and patient education modules.",
+  },
+  {
+    icon: <Globe2 className="h-8 w-8" />,
+    title: "Global Impact",
+    description: "Participate in outreach programs and contribute to global dental care initiatives.",
+  },
+];
+
+const stats = [
+  { value: "50,000+", label: "Dental Professionals" },
+  { value: "1,000+", label: "Suppliers" },
+  { value: "30%", label: "Average Cost Savings" },
+  { value: "95%", label: "Customer Satisfaction" },
+];
+
+const testimonials = [
+  {
+    quote: "DentalMarket has transformed how we manage our practice. The cost savings and efficiency improvements are remarkable.",
+    author: "Dr. Sarah Chen",
+    role: "Practice Owner",
+    location: "San Francisco, CA",
+  },
+  {
+    quote: "The staff management tools have made it incredibly easy to find qualified professionals and manage our team effectively.",
+    author: "Dr. Michael Rodriguez",
+    role: "Clinic Director",
+    location: "Miami, FL",
+  },
+];
+
+export default function Index() {
+  return (
+    <>
+      <SEO />
+      <div className="flex flex-col min-h-screen">
+        {/* Hero Section */}
+        <section className="relative py-20 md:py-32 overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-950 dark:to-cyan-950" />
+          <div className="container relative">
+            <div className="grid gap-8 lg:grid-cols-2 lg:gap-12 items-center">
+              <div className="space-y-6">
+                <h1 className="text-4xl md:text-6xl font-bold tracking-tighter">
+                  Revolutionizing Dental Practice Management
+                </h1>
+                <p className="text-xl text-muted-foreground">
+                  A comprehensive B2B platform empowering dental professionals to operate efficiently,
+                  reduce costs, and deliver exceptional patient care.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <Button size="lg" asChild>
+                    <Link to="/register">Get Started</Link>
+                  </Button>
+                  <Button size="lg" variant="outline" asChild>
+                    <Link to="/about">Learn More</Link>
+                  </Button>
+                </div>
+              </div>
+              <div className="relative lg:h-[600px]">
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-3xl opacity-10 animate-pulse" />
+                <img
+                  src="/assets/dental-lab.jpg"
+                  alt="Modern Dental Practice"
+                  className="rounded-3xl shadow-2xl object-cover w-full h-full"
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Stats Section */}
+        <section className="py-16 bg-muted/50">
+          <div className="container">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+              {stats.map((stat) => (
+                <div key={stat.label} className="space-y-2">
+                  <div className="text-3xl md:text-4xl font-bold text-primary">
+                    {stat.value}
+                  </div>
+                  <div className="text-sm text-muted-foreground">
+                    {stat.label}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Features Grid */}
+        <section className="py-20">
+          <div className="container">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold mb-4">Comprehensive Solutions</h2>
+              <p className="text-xl text-muted-foreground">
+                Everything you need to optimize your dental practice
+              </p>
+            </div>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {features.map((feature) => (
+                <Card key={feature.title} className="transition-all hover:shadow-lg">
+                  <CardContent className="p-6">
+                    <div className="p-3 w-fit rounded-lg bg-primary/10 mb-4">
+                      {feature.icon}
+                    </div>
+                    <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
+                    <p className="text-muted-foreground">{feature.description}</p>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Testimonials */}
+        <section className="py-20 bg-muted/50">
+          <div className="container">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold mb-4">Trusted by Dental Professionals</h2>
+              <p className="text-xl text-muted-foreground">
+                Hear from our satisfied customers
+              </p>
+            </div>
+            <div className="grid md:grid-cols-2 gap-8">
+              {testimonials.map((testimonial) => (
+                <Card key={testimonial.author} className="relative">
+                  <CardContent className="p-6">
+                    <div className="text-4xl text-primary mb-4">"</div>
+                    <blockquote className="text-lg mb-4">
+                      {testimonial.quote}
+                    </blockquote>
+                    <div className="mt-4">
+                      <div className="font-semibold">{testimonial.author}</div>
+                      <div className="text-sm text-muted-foreground">
+                        {testimonial.role} • {testimonial.location}
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* CTA Section */}
+        <section className="py-20 bg-primary text-primary-foreground">
+          <div className="container text-center">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">
+              Ready to Transform Your Practice?
+            </h2>
+            <p className="text-xl mb-8 text-primary-foreground/90">
+              Join thousands of dental professionals already benefiting from our platform.
+            </p>
+            <Button size="lg" variant="secondary" asChild>
+              <Link to="/register" className="flex items-center">
+                Get Started Today
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
+            </Button>
+          </div>
+        </section>
+      </div>
+    </>
+  );
+}
