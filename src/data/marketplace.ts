@@ -9,6 +9,14 @@ import {
   Plane
 } from "lucide-react";
 
+// Import images
+import dentalEquipmentHero from "../assets/dental-equipment-hero.jpg";
+import dentalInstruments from "../assets/dental-instruments.jpg";
+import dentalLab from "../assets/dental-lab.jpg";
+import dentalTourismHero from "../assets/dental-tourism-hero.jpg";
+import digitalDental from "../assets/digital-dental.jpg";
+import oralCareProducts from "../assets/oral-care-products.jpg";
+
 export interface Category {
   id: string;
   title: string;
@@ -78,15 +86,15 @@ export const categories: Category[] = [
     description: "Professional dental chairs, units, and major equipment",
     icon: Stethoscope,
     productCount: 234,
-    imageUrl: "/src/assets/dental-equipment-hero.jpg"
+    imageUrl: dentalEquipmentHero
   },
   {
     id: "instruments",
     title: "Instruments",
-    description: "Precision dental instruments and hand tools",
-    icon: Scissors,
-    productCount: 456,
-    imageUrl: "/src/assets/dental-instruments.jpg"
+    description: "Hand instruments, drills, and precision tools",
+    icon: Wrench,
+    productCount: 156,
+    imageUrl: dentalInstruments
   },
   {
     id: "consumables",
@@ -97,35 +105,35 @@ export const categories: Category[] = [
   },
   {
     id: "oral-care",
-    title: "Oral Care",
-    description: "Professional and consumer oral hygiene products",
+    title: "Oral Care Products",
+    description: "Toothbrushes, paste, mouthwash, and preventive care",
     icon: Smile,
-    productCount: 123,
-    imageUrl: "/src/assets/oral-care-products.jpg"
+    productCount: 89,
+    imageUrl: oralCareProducts
   },
   {
-    id: "digital",
-    title: "Digital Dentistry",
-    description: "CAD/CAM, 3D printing, and digital imaging solutions",
+    id: "technology",
+    title: "Digital Technology",
+    description: "Digital imaging, CAD/CAM, and practice management software",
     icon: Monitor,
-    productCount: 89,
-    imageUrl: "/src/assets/digital-dental.jpg"
+    productCount: 67,
+    imageUrl: digitalDental
   },
   {
     id: "laboratory",
-    title: "Laboratory",
-    description: "Dental lab equipment and prosthetic materials",
-    icon: Wrench,
-    productCount: 67,
-    imageUrl: "/src/assets/dental-lab.jpg"
+    title: "Laboratory Equipment", 
+    description: "Lab equipment, impression materials, and prosthetics",
+    icon: Package,
+    productCount: 123,
+    imageUrl: dentalLab
   },
   {
     id: "tourism",
     title: "Dental Tourism",
-    description: "Complete dental treatment packages with travel",
+    description: "Travel packages and international dental services",
     icon: Plane,
     productCount: 45,
-    imageUrl: "/src/assets/dental-tourism-hero.jpg"
+    imageUrl: dentalTourismHero
   }
 ];
 
@@ -137,7 +145,7 @@ export const featuredProducts: Product[] = [
     price: "$12,500",
     supplier: "DentalTech Solutions",
     votes: 89,
-    imageUrl: "/src/assets/dental-equipment-hero.jpg",
+    imageUrl: dentalEquipmentHero,
     category: "equipment",
     rating: 4.9,
     reviewCount: 45,
@@ -150,7 +158,7 @@ export const featuredProducts: Product[] = [
     price: "$890",
     supplier: "MedTools Inc",
     votes: 67,
-    imageUrl: "/src/assets/dental-instruments.jpg",
+    imageUrl: dentalInstruments,
     category: "instruments",
     rating: 4.8,
     reviewCount: 32,
@@ -163,7 +171,7 @@ export const featuredProducts: Product[] = [
     price: "$3,200",
     supplier: "DigitalDent",
     votes: 134,
-    imageUrl: "/src/assets/digital-dental.jpg",
+    imageUrl: digitalDental,
     category: "digital",
     rating: 4.7,
     reviewCount: 78,
@@ -176,7 +184,7 @@ export const featuredProducts: Product[] = [
     price: "$450",
     supplier: "SmileBright",
     votes: 156,
-    imageUrl: "/src/assets/oral-care-products.jpg",
+    imageUrl: oralCareProducts,
     category: "oral-care",
     rating: 4.6,
     reviewCount: 89,
@@ -192,7 +200,7 @@ export const trendingProducts: Product[] = [
     price: "$5,800",
     supplier: "3DentPrint",
     votes: 234,
-    imageUrl: "/src/assets/dental-lab.jpg",
+    imageUrl: dentalLab,
     category: "laboratory",
     rating: 4.9,
     reviewCount: 67,
@@ -205,7 +213,7 @@ export const trendingProducts: Product[] = [
     price: "$1,200",
     supplier: "SmartDental",
     votes: 189,
-    imageUrl: "/src/assets/digital-dental.jpg",
+    imageUrl: digitalDental,
     category: "digital",
     rating: 4.8,
     reviewCount: 54,
@@ -218,7 +226,7 @@ export const trendingProducts: Product[] = [
     price: "$2,100",
     supplier: "ScaleTech",
     votes: 145,
-    imageUrl: "/src/assets/dental-instruments.jpg",
+    imageUrl: dentalInstruments,
     category: "instruments",
     rating: 4.7,
     reviewCount: 43,
@@ -236,7 +244,7 @@ export const tourismPackages: TourismPackage[] = [
     originalPrice: "$8,000",
     duration: "7 days",
     votes: 289,
-    imageUrl: "/src/assets/dental-tourism-hero.jpg",
+    imageUrl: dentalTourismHero,
     rating: 4.9,
     reviewCount: 127,
     features: ["5-star resort accommodation", "Airport transfers", "Local tour guide", "Post-treatment care"],
@@ -254,7 +262,7 @@ export const tourismPackages: TourismPackage[] = [
     originalPrice: "$6,500",
     duration: "10 days",
     votes: 234,
-    imageUrl: "/src/assets/dental-tourism-hero.jpg",
+    imageUrl: dentalTourismHero,
     rating: 4.8,
     reviewCount: 89,
     features: ["Boutique hotel stay", "All meals included", "Nature excursions", "Follow-up care"],
@@ -272,7 +280,7 @@ export const tourismPackages: TourismPackage[] = [
     originalPrice: "$15,000",
     duration: "14 days",
     votes: 198,
-    imageUrl: "/src/assets/dental-tourism-hero.jpg",
+    imageUrl: dentalTourismHero,
     rating: 4.9,
     reviewCount: 156,
     features: ["All-inclusive resort", "Private transportation", "Dedicated care coordinator", "Lifetime warranty"],
@@ -290,7 +298,7 @@ export const tourismPackages: TourismPackage[] = [
     originalPrice: "$5,500",
     duration: "Multiple visits over 18 months",
     votes: 167,
-    imageUrl: "/src/assets/dental-tourism-hero.jpg",
+    imageUrl: dentalTourismHero,
     rating: 4.7,
     reviewCount: 73,
     features: ["Historic city hotel", "Cultural tours", "Spa treatments", "Progress monitoring"],
@@ -307,7 +315,7 @@ export const tourismPackages: TourismPackage[] = [
     originalPrice: "$1,500",
     duration: "4 days",
     votes: 145,
-    imageUrl: "/src/assets/dental-tourism-hero.jpg",
+    imageUrl: dentalTourismHero,
     rating: 4.6,
     reviewCount: 91,
     features: ["City center hotel", "Historic site tours", "Turkish bath experience", "Dental kit included"],
