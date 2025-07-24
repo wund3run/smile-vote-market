@@ -4,7 +4,6 @@ import {
   Pill, 
   Smile, 
   Monitor, 
-  Scissors,
   Package,
   Plane
 } from "lucide-react";

@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ArrowRight, ShieldCheck, Building2, Users } from "lucide-react";
 import { Link } from "react-router-dom";
+import dentalLabImage from "../assets/dental-lab.jpg";
 
 export function HeroSection() {
   return (
@@ -81,7 +82,7 @@ export function HeroSection() {
           <div className="relative">
             <div className="relative rounded-2xl overflow-hidden shadow-2xl">
               <img
-                src="/src/assets/dental-lab.jpg"
+                src={dentalLabImage}
                 alt="Modern dental laboratory with advanced equipment"
                 className="w-full h-[400px] md:h-[500px] object-cover"
               />
