@@ -1,3 +1,4 @@
+"""
 # Dental B2B Marketplace – Wireframe Reference
 
 Below are text-based wireframes for each major module. These can be used as a reference for UI/UX design and prototyping.
@@ -151,6 +152,7 @@ Below are text-based wireframes for each major module. These can be used as a re
 ```
 
 ---
-
 **Note:**  
+These wireframes are for reference and should be refined with user feedback and visual design best practices before development.
+"""
 These wireframes are for reference and should be refined with user feedback and visual design best practices before development.
