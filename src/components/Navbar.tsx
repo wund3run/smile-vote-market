@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Search, User, ShoppingCart, Menu, X, Bell, Heart, Globe, Filter, MessageSquare, HelpCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Badge } from "@/components/ui/badge";
 import { 
   DropdownMenu, 
   DropdownMenuContent, 

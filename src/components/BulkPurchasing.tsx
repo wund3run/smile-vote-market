@@ -1,14 +1,11 @@
 import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { 
   Users, 
-  Package, 
   Clock, 
-  TrendingUp, 
-  Calendar,
+  TrendingUp,
   ShoppingCart,
   AlertCircle,
   CheckCircle,
@@ -49,7 +46,7 @@ interface BulkOrder {
 }
 
 export function BulkPurchasing() {
-  const [activeTab, setActiveTab] = useState<"group" | "bulk">("group");
+  const [_activeTab, _setActiveTab] = useState<"group" | "bulk">("group");
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
 
   const groupBuys: GroupBuy[] = [

@@ -9,7 +9,6 @@ import {
   ShoppingCart,
   User,
   Heart,
-  Globe,
   ChevronDown,
   Filter,
   MessageSquare,

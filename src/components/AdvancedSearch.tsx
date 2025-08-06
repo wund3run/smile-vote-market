@@ -1,12 +1,20 @@
 import React, { useState } from 'react';
 import { Badge } from './ui/badge';
 import { Button } from './ui/button';
-import { Card, CardContent } from './ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select';
 import { Calendar, MapPin, Search, Mic, Camera } from 'lucide-react';
 
+interface SearchFilters {
+  category: string;
+  location: string;
+  priceRange: string;
+  dateRange: string;
+  supplier: string;
+  rating: string;
+}
+
 interface AdvancedSearchProps {
-  onSearch: (filters: any) => void;
+  onSearch: (filters: SearchFilters) => void;
 }
 
 const AdvancedSearch: React.FC<AdvancedSearchProps> = ({ onSearch }) => {

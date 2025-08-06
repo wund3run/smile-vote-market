@@ -21,8 +21,8 @@ export function MainLayout({
   isAuthenticated = false,
   userProfile 
 }: MainLayoutProps) {
-  const [isFilterOpen, setIsFilterOpen] = useState(false);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [_isFilterOpen, _setIsFilterOpen] = useState(false);
+  const [_isMenuOpen, _setIsMenuOpen] = useState(false);
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col">

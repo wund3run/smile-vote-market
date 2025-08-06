@@ -12,7 +12,6 @@ import {
   Calendar,
   HandHeart,
   Truck,
-  BookOpen,
   ThumbsUp
 } from "lucide-react";
 

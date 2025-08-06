@@ -6,10 +6,8 @@ import {
   Building2, 
   Users, 
   Globe, 
-  Award, 
   ShieldCheck, 
   TrendingUp,
-  Package,
   Star,
   ArrowRight,
   CheckCircle

@@ -7,7 +7,6 @@ import {
   Search,
   Bell,
   User,
-  Globe,
   ChevronDown,
   MessageSquare,
   Settings,

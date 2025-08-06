@@ -1,6 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ChartLine, ShoppingCart, Calendar, Bell, MessageCircle } from "lucide-react";
+import { ShoppingCart, Calendar, Bell, MessageCircle } from "lucide-react";
 
 export function Dashboard() {
   return (

@@ -10,7 +10,6 @@ import {
   Calendar,
   Download,
   ArrowUpRight,
-  ArrowDownRight,
   Activity
 } from "lucide-react";
 
