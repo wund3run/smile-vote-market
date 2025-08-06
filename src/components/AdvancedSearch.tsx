@@ -1,15 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { Badge } from './ui/badge';
 import { Button } from './ui/button';
 import { Card, CardContent } from './ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select';
 import { Calendar, MapPin, Search, Mic, Camera } from 'lucide-react';
+import { useDebounce, useDebouncedCallback } from '@/hooks/useDebounce';
 
 interface AdvancedSearchProps {
   onSearch: (filters: any) => void;
 }
 
-const AdvancedSearch: React.FC<AdvancedSearchProps> = ({ onSearch }) => {
+const AdvancedSearch: React.FC<AdvancedSearchProps> = React.memo(({ onSearch }) => {
   const [query, setQuery] = useState('');
   const [isAdvanced, setIsAdvanced] = useState(false);
   const [filters, setFilters] = useState({
@@ -18,6 +19,25 @@ const AdvancedSearch: React.FC<AdvancedSearchProps> = ({ onSearch }) => {
     priceRange: '',
     dateRange: '',
   });
+
+  // Debounce the search query for better performance
+  const debouncedQuery = useDebounce(query, 300);
+
+  // Debounced search handler
+  const debouncedOnSearch = useDebouncedCallback(
+    (searchFilters: any) => {
+      onSearch(searchFilters);
+    },
+    300,
+    [onSearch]
+  );
+
+  // Effect to trigger search when debounced query changes
+  React.useEffect(() => {
+    if (debouncedQuery || Object.values(filters).some(filter => filter)) {
+      debouncedOnSearch({ query: debouncedQuery, ...filters });
+    }
+  }, [debouncedQuery, filters, debouncedOnSearch]);
 
   const popularSearches = [
     'Dental Implants',
@@ -30,14 +50,14 @@ const AdvancedSearch: React.FC<AdvancedSearchProps> = ({ onSearch }) => {
     'Emergency Dental',
   ];
 
-  const handleSearch = () => {
+  const handleSearch = useCallback(() => {
     onSearch({ query, ...filters });
-  };
+  }, [query, filters, onSearch]);
 
-  const handleQuickSearch = (searchTerm: string) => {
+  const handleQuickSearch = useCallback((searchTerm: string) => {
     setQuery(searchTerm);
     onSearch({ query: searchTerm, ...filters });
-  };
+  }, [filters, onSearch]);
 
   return (
     <div className="rounded-lg p-6">
@@ -204,6 +224,6 @@ const AdvancedSearch: React.FC<AdvancedSearchProps> = ({ onSearch }) => {
       )}
     </div>
   );
-};
+});
 
 export default AdvancedSearch;
