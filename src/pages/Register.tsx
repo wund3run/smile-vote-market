@@ -6,9 +6,6 @@ import { Badge } from "@/components/ui/badge";
 import { 
   User, 
   Building2, 
-  Mail, 
-  Phone, 
-  MapPin, 
   ArrowRight,
   CheckCircle,
   Users,

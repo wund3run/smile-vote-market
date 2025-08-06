@@ -5,12 +5,8 @@ import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { 
   Video, 
-  Calendar,
-  Clock, 
+  Calendar, 
   FileText,
-  MonitorSmartphone,
-  MessageSquare,
-  Users,
   Plus
 } from "lucide-react";
 

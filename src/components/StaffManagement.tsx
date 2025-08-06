@@ -7,7 +7,6 @@ import { Badge } from "@/components/ui/badge";
 import {
   Users,
   GraduationCap,
-  Calendar,
   MapPin,
   Clock,
   Building2,
@@ -15,7 +14,6 @@ import {
   DollarSign,
   Plus,
   Search,
-  FileText,
   Filter,
   UserPlus
 } from "lucide-react";

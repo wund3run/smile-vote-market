@@ -13,20 +13,16 @@ import {
   TrendingUp,
   Award,
   Clock,
-  MapPin,
   Star,
   ShoppingCart,
   Heart,
   GitCompare,
-  Filter,
-  Search,
   Package,
   Truck,
   Shield,
   CreditCard,
   Building2,
-  UserCheck,
-  Globe
+  UserCheck
 } from "lucide-react";
 import { BulkPurchasing } from "@/components/BulkPurchasing";
 import { FilterSidebar } from "@/components/FilterSidebar";
@@ -39,6 +35,15 @@ interface UserJourney {
   type: "new" | "experienced" | "enterprise";
   needsAssessment: boolean;
   preferredView: "guided" | "expert" | "bulk";
+}
+
+interface SearchFilters {
+  category: string;
+  location: string;
+  priceRange: string;
+  dateRange: string;
+  supplier: string;
+  rating: string;
 }
 
 export default function Marketplace() {
@@ -64,7 +69,7 @@ export default function Marketplace() {
     rating: ""
   });
 
-  const handleSearch = (filters: any) => {
+  const handleSearch = (filters: SearchFilters) => {
     setSearchFilters(filters);
     // Implement search logic
   };
@@ -286,7 +291,7 @@ export default function Marketplace() {
             {/* Navigation Tabs */}
             <Card className="shadow-sm border-0 mb-6">
               <CardContent className="p-6">
-                <Tabs value={activeView} onValueChange={(value: any) => setActiveView(value)}>
+                <Tabs value={activeView} onValueChange={(value: "regular" | "bulk" | "subscription") => setActiveView(value)}>
                   <TabsList className="grid w-full grid-cols-3 mb-6">
                     <TabsTrigger value="regular" className="flex items-center gap-2">
                       <ShoppingBag className="h-4 w-4" />

@@ -5,7 +5,6 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { 
   Search,
-  HelpCircle,
   BookOpen,
   MessageCircle,
   PlayCircle,

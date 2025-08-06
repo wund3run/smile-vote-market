@@ -7,9 +7,7 @@ import {
   Calendar,
   Clock,
   Video,
-  Users,
   CheckCircle,
-  ArrowRight,
   Play,
   Star,
   Quote

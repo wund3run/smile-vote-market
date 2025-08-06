@@ -125,12 +125,12 @@ export function SmartProcurementAnalytics() {
           </p>
         </div>
         <div className="flex gap-2">
-          {["week", "month", "quarter", "year"].map((period) => (
+          {(["week", "month", "quarter", "year"] as const).map((period) => (
             <Button
               key={period}
               variant={selectedTimeframe === period ? "default" : "outline"}
               size="sm"
-              onClick={() => setSelectedTimeframe(period as any)}
+              onClick={() => setSelectedTimeframe(period)}
               className="capitalize"
             >
               {period}

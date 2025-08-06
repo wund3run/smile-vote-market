@@ -1,20 +1,9 @@
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { MimiosLogo } from "@/components/MimiosLogo";
-import { 
-  Facebook, 
-  Twitter, 
-  Linkedin, 
-  Instagram, 
-  Mail, 
-  Phone, 
-  MapPin,
-  ArrowRight,
+import {
   Shield,
   Award,
   Globe
 } from "lucide-react";
-import { Link } from "react-router-dom";
 
 const footerLinks = {
   platform: [

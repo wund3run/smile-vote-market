@@ -10,9 +10,7 @@ import {
   Monitor,
   DollarSign,
   ThumbsUp,
-  Calendar,
   PlayCircle,
-  Cpu,
   Grid,
   List
 } from "lucide-react";

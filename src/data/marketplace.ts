@@ -5,7 +5,8 @@ import {
   Smile, 
   Monitor, 
   Package,
-  Plane
+  Plane,
+  LucideIcon
 } from "lucide-react";
 
 // Import images
@@ -20,7 +21,7 @@ export interface Category {
   id: string;
   title: string;
   description: string;
-  icon: any;
+  icon: LucideIcon;
   productCount: number;
   imageUrl?: string;
 }
