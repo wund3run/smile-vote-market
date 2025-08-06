@@ -1,8 +1,9 @@
-import { useState } from "react";
+import React, { useState, useCallback } from "react";
 import { Heart, ShoppingCart, ThumbsUp, Eye, Star, GitCompareArrows, Truck, Shield, Clock } from "lucide-react";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import LazyImage from "./LazyImage";
 
 import { Product as MarketplaceProduct } from "@/data/marketplace";
 
@@ -21,7 +22,7 @@ interface ProductCardProps {
   isInCart?: boolean;
 }
 
-export function ProductCard({
+export const ProductCard = React.memo<ProductCardProps>(({
   product,
   viewMode = 'grid',
   onWishlist,
@@ -30,32 +31,32 @@ export function ProductCard({
   isInWishlist = false,
   isInCompare = false,
   isInCart = false
-}: ProductCardProps) {
+}) => {
   const [voteCount, setVoteCount] = useState(product.votes);
   const [hasVoted, setHasVoted] = useState(false);
 
-  const handleVote = (e: React.MouseEvent) => {
+  const handleVote = useCallback((e: React.MouseEvent) => {
     e.stopPropagation();
     if (!hasVoted) {
       setVoteCount(prev => prev + 1);
       setHasVoted(true);
     }
-  };
+  }, [hasVoted]);
 
-  const handleWishlist = (e: React.MouseEvent) => {
+  const handleWishlist = useCallback((e: React.MouseEvent) => {
     e.stopPropagation();
     onWishlist?.();
-  };
+  }, [onWishlist]);
 
-  const handleCompare = (e: React.MouseEvent) => {
+  const handleCompare = useCallback((e: React.MouseEvent) => {
     e.stopPropagation();
     onCompare?.();
-  };
+  }, [onCompare]);
 
-  const handleAddToCart = (e: React.MouseEvent) => {
+  const handleAddToCart = useCallback((e: React.MouseEvent) => {
     e.stopPropagation();
     onAddToCart?.();
-  };
+  }, [onAddToCart]);
 
   const isDiscounted = product.originalPrice && product.originalPrice !== product.price;
 
@@ -68,7 +69,7 @@ export function ProductCard({
       <div className={`relative ${
         viewMode === 'grid' ? '' : 'w-48 flex-shrink-0'
       }`}>
-        <img
+        <LazyImage
           src={product.imageUrl}
           alt={product.title}
           className={`object-cover transition-transform duration-300 group-hover:scale-105 ${
@@ -235,4 +236,4 @@ export function ProductCard({
       </div>
     </Card>
   );
-}
+});

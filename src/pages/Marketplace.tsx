@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useCallback, useMemo, useEffect } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -32,7 +32,7 @@ import { BulkPurchasing } from "@/components/BulkPurchasing";
 import { FilterSidebar } from "@/components/FilterSidebar";
 import { ProductCard } from "@/components/ProductCard";
 import AdvancedSearch from "@/components/AdvancedSearch";
-import { categories, featuredProducts } from "@/data/marketplace";
+import { loadCategories, loadFeaturedProducts, type Category, type Product } from "@/data/marketplace";
 import { useAuth } from "@/contexts/AuthContext";
 
 interface UserJourney {
@@ -43,18 +43,27 @@ interface UserJourney {
 
 export default function Marketplace() {
   const { user, isAuthenticated } = useAuth();
+  
+  // State for UI
   const [activeView, setActiveView] = useState<"regular" | "bulk" | "subscription">("regular");
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
+  const [selectedCategory, setSelectedCategory] = useState<string>("all");
+  const [wishlist, setWishlist] = useState<string[]>([]);
+  const [compareList, setCompareList] = useState<string[]>([]);
+  const [cartItems, setCartItems] = useState<string[]>([]);
+  
+  // State for data
+  const [categories, setCategories] = useState<Category[]>([]);
+  const [featuredProducts, setFeaturedProducts] = useState<Product[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  
   const [userJourney, setUserJourney] = useState<UserJourney>({
     type: "new",
     needsAssessment: !isAuthenticated,
     preferredView: "guided"
   });
-  const [selectedCategory, setSelectedCategory] = useState<string>("all");
-  const [wishlist, setWishlist] = useState<string[]>([]);
-  const [compareList, setCompareList] = useState<string[]>([]);
-  const [cartItems, setCartItems] = useState<string[]>([]);
+  
   const [searchFilters, setSearchFilters] = useState({
     category: "",
     location: "",
@@ -64,20 +73,41 @@ export default function Marketplace() {
     rating: ""
   });
 
-  const handleSearch = (filters: any) => {
+  // Load data lazily on component mount
+  useEffect(() => {
+    const loadData = async () => {
+      try {
+        const [categoriesData, productsData] = await Promise.all([
+          loadCategories(),
+          loadFeaturedProducts()
+        ]);
+        setCategories(categoriesData);
+        setFeaturedProducts(productsData);
+      } catch (error) {
+        console.error('Failed to load marketplace data:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    
+    loadData();
+  }, []);
+
+  // Memoized handlers to prevent unnecessary re-renders
+  const handleSearch = useCallback((filters: any) => {
     setSearchFilters(filters);
     // Implement search logic
-  };
+  }, []);
 
-  const toggleWishlist = (productId: string) => {
+  const toggleWishlist = useCallback((productId: string) => {
     setWishlist(prev => 
       prev.includes(productId) 
         ? prev.filter(id => id !== productId)
         : [...prev, productId]
     );
-  };
+  }, []);
 
-  const toggleCompare = (productId: string) => {
+  const toggleCompare = useCallback((productId: string) => {
     if (compareList.length >= 4 && !compareList.includes(productId)) {
       // Max 4 items for comparison
       return;
@@ -87,26 +117,38 @@ export default function Marketplace() {
         ? prev.filter(id => id !== productId)
         : [...prev, productId]
     );
-  };
+  }, [compareList]);
 
-  const addToCart = (productId: string) => {
+  const addToCart = useCallback((productId: string) => {
     setCartItems(prev => 
       prev.includes(productId) ? prev : [...prev, productId]
     );
-  };
+  }, []);
 
-  // Smart recommendations based on user type
-  const getRecommendations = () => {
+  // Memoized recommendations based on user type
+  const recommendations = useMemo(() => {
     if (user?.type === "clinic") return "New Practice Setup";
     if (user?.type === "supplier") return "Bulk Equipment";
     if (user?.type === "vendor") return "Specialist Tools";
     return "Popular Items";
-  };
+  }, [user?.type]);
 
-  const filteredProducts = featuredProducts.filter(product => {
-    if (selectedCategory === "all") return true;
-    return product.category === selectedCategory;
-  });
+  // Memoized filtered products
+  const filteredProducts = useMemo(() => {
+    return featuredProducts.filter(product => {
+      if (selectedCategory === "all") return true;
+      return product.category === selectedCategory;
+    });
+  }, [featuredProducts, selectedCategory]);
+
+  // Loading state
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gray-50">
